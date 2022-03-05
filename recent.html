@@ -1,64 +1,126 @@
+
+
+
 <!DOCTYPE html>
 
 <html>
 
 <head>
 
-<meta charset="utf-8">
+<meta charset='utf-8'/>
 
-<title>Random Posts</title>
+<meta content='width=device-width,minimum-scale=1,initial-scale=1' name='viewport'/>
 
-<meta content='width=device-width, initial-scale=1' name='viewport'>
+<title>Recent Post</title>
 
 <style>
 
-body {
+body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif;}
 
-  background-color:transparent;
+a,img{transition:all .4s ease-in-out}
 
-  margin:0;
+#recentpostnav{border:1px solid #585858;width:100%;margin:0 auto}
 
-  padding:0;
+#recentpost{margin:0;background:#fff;}
 
-  overflow:hidden;
+.recentpostel{background:#fff;display:block;border-bottom:1px solid #ddd;margin:0 0 10px;padding:0 0 10px;height:72px}
 
-}
+.recentpostel:last-child{margin:0;border-bottom:none;}
 
-iframe{border:0;}
+.recentpostel img{background:#fff;padding:0;float:left;height:72px;margin-right:8px;width:72px;display:block;border-radius: 3px;}
+
+.recentpostel h6,.recentpostel h6 a{text-decoration:none;font-size:16px;font-weight:700;line-height:1.2;margin:0;color:#555}
+
+.recentpostel h6 a:hover{color:#777}
+
+.recentpostel img:hover{opacity:.6}
+
+#recentpostload{color:#888;font-family:Tahoma;font-size:100px;letter-spacing:-10px;text-align:center;text-shadow:-5px 0 1px #444;background:url(https://i.ibb.co/QPc2ryX/ezgif-2-6d0b072c3d3f.gif) 50% 50% no-repeat #fff;height:470px;border:1px solid #ddd}
+
+#recentpostnavfeed{background:#eee;text-align:center;margin:0}
+
+#recentpostnavfeed a{text-decoration:none;display:block;padding:5px}
+
+#recentpostnavfeed span{padding:5px}
+
+#recentpostnavfeed .next{float:right}
+
+#recentpostnavfeed .previous{float:left}
+
+#recentpostnavfeed .home{text-align:center;display:inline-block;}
+
+#recentpostnavfeed svg{vertical-align:middle;}
 
 </style>
+
+
+
+</head>
+
+
+
+<body>
+
+<div class="box" id="box">
+
+<div id="recentpost"></div>
+
+
+</div>
 
 <script>
 
 function getQueryVariable(variable) {
 
-	var query = window.location.search.substring(1);	var vars = query.split("&");
+  var query = window.location.search.substring(1);
 
-	for (var i=0;i<vars.length;i++) {
+  var vars = query.split("&");
 
-		var pair = vars[i].split("=");
+  for (var i=0;i<vars.length;i++) {
 
-		if(pair[0] == variable){return pair[1];}
+    var pair = vars[i].split("=");
 
-	}
+    if(pair[0] == variable){return pair[1];}
 
-	return(false);
+  }
+
+  return(false);
 
 }
 
-var domain = getQueryVariable("url");
+  function generateCss(q) {
 
-var labels = getQueryVariable("label");
+    var css       = document.createElement('style'),
 
-</script>
+        sp2       = document.getElementById('box'),
 
-</head>
+        parentDiv = sp2.parentNode;
 
-<body>
+    css.type = 'text/css';
+
+    if (css.styleSheet) css.styleSheet.cssText = q;
+
+    else css.appendChild(document.createTextNode(q));
+
+    parentDiv.insertBefore(css, sp2);
+
+  }
+
+    (function() {
+
+    var q = '.recentpostel h6 a {font-size:' + getQueryVariable('fontSize') + ';color:#' + getQueryVariable('color') + '}';
+
+        generateCss(q);
+
+  })();
+
+  </script>
 
 <script>
 
-document.write('<iframe src="https://feed.mikle.com/widget/v2/?widget_parameter=%7B%22type%22%3A%22%22%2C%22sources%22%3A%5B%7B%22source%22%3A%22http%3A%2F%2F'+domain+'%2Ffeeds%2Fposts%2Fdefault%2F-%2F'+labels+'%22%2C%22type%22%3A%22RSS%22%7D%5D%2C%22name%22%3A%22%22%2C%22width%22%3A0%2C%22height%22%3A%22700%22%2C%22height_by_article%22%3A0%2C%22target%22%3A%22_blank%22%2C%22font%22%3A%22Arial%2C%20Helvetica%2C%20sans-serif%22%2C%22title_font_size%22%3A%2216%22%2C%22item_title_font_size%22%3A%2216%22%2C%22item_description_font_size%22%3A%2214%22%2C%22border%22%3A%22off%22%2C%22css_url%22%3A%22https%3A%2F%2Fcdn.rawgit.com%2FKompiAjaib%2Fkompi-html%2Fmaster%2Ffreewind6.css%22%2C%22responsive%22%3A%22on%22%2C%22text_direction%22%3A%22left%22%2C%22text_alignment%22%3A%22left%22%2C%22corner%22%3A%22square%22%2C%22scroll%22%3A%22on%22%2C%22auto_scroll%22%3A%22on%22%2C%22auto_scroll_direction%22%3A%22up%22%2C%22auto_scroll_step_speed%22%3A%224%22%2C%22auto_scroll_mc_speed%22%3A%2220%22%2C%22sort%22%3A%22rnd%22%2C%22title%22%3A%22off%22%2C%22title_sentence%22%3A%22%22%2C%22title_link%22%3A%22%22%2C%22title_bgcolor%22%3A%22%23ffffff%22%2C%22title_color%22%3A%22%23505659%22%2C%22title_bgimage%22%3A%22%22%2C%22item_bgcolor%22%3A%22%23ffffff%22%2C%22item_bgimage%22%3A%22%22%2C%22item_title_length%22%3A%22200%22%2C%22item_title_color%22%3A%22%23222222%22%2C%22item_border_bottom%22%3A%22on%22%2C%22item_description%22%3A%22title_only%22%2C%22item_link%22%3A%22off%22%2C%22item_description_length%22%3A%22150%22%2C%22item_description_color%22%3A%22%23505659%22%2C%22item_date%22%3A%22off%22%2C%22item_date_format%22%3A%22%25b%20%25e%2C%20%25Y%20%25k%3A%25M%22%2C%22item_date_timezone%22%3A%22%22%2C%22item_description_style%22%3A%22thumbnail%22%2C%22item_thumbnail%22%3A%22crop%22%2C%22item_thumbnail_selection%22%3A%22auto%22%2C%22article_num%22%3A%229999%22%2C%22item_player%22%3A%22youtube%22%2C%22keyword_inc%22%3A%22%22%2C%22keyword_exc%22%3A%22%22%7D" scrolling="no" style="width:100%;height:620px;overflow:hidden;"/>');
+var urlblog = getQueryVariable("url");
+
+function bloggerfeed(e,t){for(var n=e.split("<"),r=0;r<n.length;r++)-1!=n[r].indexOf(">")&&(n[r]=n[r].substring(n[r].indexOf(">")+1,n[r].length));return n=n.join(""),n=n.substring(0,t-1)}function showrecentpost(e){var t,n,r,a,i,s="";urlprevious="",urlnext="";for(var l=0;l<e.feed.link.length;l++)"previous"==e.feed.link[l].rel&&(urlprevious=e.feed.link[l].href),"next"==e.feed.link[l].rel&&(urlnext=e.feed.link[l].href);for(var d=0;d<5&&d!=e.feed.entry.length;d++){t=e.feed.entry[d],n=t.title.$t;for(var l=0;l<t.link.length;l++)if("alternate"==t.link[l].rel){r=t.link[l].href;break}i="content"in t?t.content.$t:"summary"in t?t.summary.$t:"",a="media$thumbnail"in t?t.media$thumbnail.url:"https://i.ibb.co/KxvBT2H/recent-post.jpg",s+="<div class='recentpostel'>",s+="<a href='"+r+"' target='_blank' title='"+n+"'><img alt='"+n+"' width='72' src='"+a+"' height='72' title='"+n+"'/></a>",s+="<h6><a href='"+r+"' target='_blank' title='"+n+"'>"+n+"</a></h6>",s+="</div>"}document.getElementById("recentpost").innerHTML=s,s="",s+=urlprevious?"<a href='javascript:navigasifeed(-1);' class='previous' title='Previous'><svg width='24' height='24' viewBox='0 0 24 24'><path fill='#333333' d='M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z' /></svg></a>":"<span class='noactived previous'><svg width='24' height='24' viewBox='0 0 24 24'><path fill='#777777' d='M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z' /></svg></span>",s+=urlnext?"<a href='javascript:navigasifeed(1);' class='next' title='Next'><svg width='24' height='24' viewBox='0 0 24 24'><path fill='#333333' d='M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z' /></svg></a>":"<span class='noactived next'><svg width='24' height='24' viewBox='0 0 24 24'><path fill='#777777' d='M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z' /></svg></span>",s+="<a href='javascript:navigasifeed(0);' class='home' title='Home'><svg width='24' height='24' viewBox='0 0 24 24'><path fill='#141414' d='M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z' /></svg></a>",document.getElementById("recentpostnavfeed").innerHTML=s}function navigasifeed(e){var t,n;-1==e?(t=urlprevious.indexOf("?"),n=urlprevious.substring(t)):1==e?(t=urlnext.indexOf("?"),n=urlnext.substring(t)):n="?start-index=1&max-results=5&orderby=published&alt=json-in-script",n+="&callback=showrecentpost",incluirscript(n)}function incluirscript(e){1==0&&removerscript(),document.getElementById("recentpost").innerHTML="<div id='recentpostload'></div>",document.getElementById("recentpostnavfeed").innerHTML="";var t=urlblog+"/feeds/posts/default"+e,n=document.createElement("script");n.setAttribute("type","text/javascript"),n.setAttribute("src",t),n.setAttribute("id","postlabel"),document.getElementsByTagName("head")[0].appendChild(n),startfeed=1}function removerscript(){var e=document.getElementById("postlabel"),t=e.parentNode;t.removeChild(e)}onload=function(){navigasifeed(0)};
 
 </script>
 
