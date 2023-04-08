@@ -8,7 +8,7 @@ if(typeof adsbygoogle !== 'undefined'){
     if(adElement.getAttribute('data-ad-status') === 'filled') {
       // Add class 'v' to the parent element with ID 'ADShowM'
       document.getElementById("ADShowM").classList.add("v");
-      alert("AdSense script has loaded successfully and ad was filled");
+      console.log("AdSense script has loaded successfully and ad was filled");
       clearInterval(intervalId); // Stop checking for the ad status
     }
     // Increase the elapsed time by 1 second
